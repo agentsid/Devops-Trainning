@@ -11,10 +11,10 @@
             <id>deployement</id>
             <url>https://13.235.114.3:8081/repository/sample-snapshot/</url>
         </repository>
-       </distributionManagement>
+    </distributionManagement>
         <properties>
-                    <maven.compiler.source>3.7</maven.compiler.source>
-                    <maven.compiler.target>3.7</maven.compiler.target>
+                    <maven.compiler.source>3.6</maven.compiler.source>
+                    <maven.compiler.target>3.6</maven.compiler.target>
         </properties>
 	
 	<dependencies>
