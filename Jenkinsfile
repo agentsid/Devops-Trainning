@@ -2,37 +2,38 @@ pipeline {
     agent any
 
 	tools {
-		maven 'maven3.8.7'
-		java 'java17'
+		jdk 'jdk17'
 	}
-
-	environment {
-		MAVEN_HOME = "D:/destros/Maven/maven-3.8.7/bin"
-		JAVA_HOME = "C:/Program Files/Java/jdk-17/bin"
-	}
+//	environment {
+//		M2_INSTALL = "/usr/bin/mvn"
+//	}
 
     stages {
-		stage('Clone-Repo') {
-			steps {
-				checkout scm
-			}
-		}
-		stage('Build') {
-	    	steps {
-				sh 'mvn install -DskipTests'
-			}
+        stage('Clone-Repo') {
+	    steps {
+	        checkout scm
 	    }
-		stage('Unit Tests') {
-			steps {
-				sh 'mvn surefire:test'
-			}
-		}
-		stage('Deployment') {
-	    	steps {
-				print "Deployment is done!"
-//				sh 'sshpass -p "gamut" scp target/gamutkart.war gamut@172.17.0.3:/home/gamut/Distros/apache-tomcat-8.5.41/webapps'
-//				sh 'sshpass -p "gamut" ssh gamut@172.17.0.3 "JAVA_HOME=/home/gamut/Distros/jdk1.8.0_211" "/home/gamut/Distros/apache-tomcat-8.5.41/bin/startup.sh"'
-	    	}
-		}
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn install -Dmaven.test.skip=true'
+            }
+        }
+		
+        stage('Unit Tests') {
+            steps {
+                sh 'mvn compiler:testCompile'
+                sh 'mvn surefire:test'
+                junit 'target/**/*.xml'
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+                sh 'sshpass -p "gamut" scp target/gamutgurus.war gamut@172.17.0.3:/home/gamut/Distros/apache-tomcat-9.0.70/webapps'
+                sh 'sshpass -p "gamut" ssh gamut@172.17.0.3 "/home/gamut/Distros/apache-tomcat-9.0.70/bin/startup.sh"'
+            }
+        }
     }
 }
