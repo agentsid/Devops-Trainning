@@ -1,9 +1,6 @@
 pipeline {
-    agent any
+    agent any // if no Agent then it will bild on jenkins server
 
-	// tools {
-	// 	jdk 'jdk17'
-	// }
 	environment {
 		MAVEN_HOME = "D:/destros/Maven/maven-3.8.7/"
 		JAVA_HOME =  "C:/Program Files/Java/jdk-17/"
@@ -12,21 +9,19 @@ pipeline {
     stages {
         stage('Clone-Repo') {
 	    steps {
-	        checkout scm
+	        checkout scm  // cloning repository
 	    }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn install -Dmaven.test.skip=true'
+                sh 'mvn install -Dmaven.test.skip=true' // Build the code
             }
         }
 		
         stage('Unit Tests') {
-            steps {
-                //sh 'mvn compiler:testCompile'
-                sh 'mvn surefire:test'
-                //junit 'target/**/*.xml'
+            steps {  
+                sh 'mvn surefire:test' // running Testcases
             }
         }
 
