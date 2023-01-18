@@ -5,8 +5,8 @@ pipeline {
 	// 	jdk 'jdk17'
 	// }
 	environment {
-		MAVEN_HOME = "D:/destros/Maven/maven-3.8.7/bin"
-		JAVA_HOME =  "C:/Program Files/Java/jdk-17/bin"
+		MAVEN_HOME = "D:\destros\Maven\maven-3.8.7\bin"
+		JAVA_HOME =  "C:\Program Files\Java\jdk-17\bin"
 	}
 
     stages {
