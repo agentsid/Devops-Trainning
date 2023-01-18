@@ -28,8 +28,8 @@ pipeline {
         stage('Deployment') {
             steps {
 				print "Deployment is done!"
-                //sh 'sshpass -p "gamut" scp target/gamutgurus.war gamut@172.17.0.3:/home/gamut/Distros/apache-tomcat-9.0.70/webapps'
-                //sh 'sshpass -p "gamut" ssh gamut@172.17.0.3 "/home/gamut/Distros/apache-tomcat-9.0.70/bin/startup.sh"'
+                sh 'cp C:/Users/Admin/.jenkins/workspace/pipeline/target/gamutkart.war C:/Program Files/Apache Software Foundation/Tomcat 10.0/webapps'
+                
             }
         }
     }
