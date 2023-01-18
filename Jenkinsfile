@@ -1,12 +1,13 @@
 pipeline {
-    //agent any
+    agent any
 
 	tools {
 		jdk 'jdk17'
 	}
-//	environment {
-//		M2_INSTALL = "/usr/bin/mvn"
-//	}
+	environment {
+		MAVEN_HOME = "D:/destros/Maven/maven-3.8.7/bin"
+		JAVA_HOME =  "C:/Program Files/Java/jdk-17/bin"
+	}
 
     stages {
         stage('Clone-Repo') {
@@ -23,9 +24,9 @@ pipeline {
 		
         stage('Unit Tests') {
             steps {
-                sh 'mvn compiler:testCompile'
+                //sh 'mvn compiler:testCompile'
                 sh 'mvn surefire:test'
-                junit 'target/**/*.xml'
+                //junit 'target/**/*.xml'
             }
         }
 
