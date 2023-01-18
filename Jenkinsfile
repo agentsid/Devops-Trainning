@@ -28,6 +28,7 @@ pipeline {
         stage('Deployment') {
             steps {
 				print "Deployment is done!"
+				sh ' scp target/gamutkart.war siddharth@192.168.1.75:/home/siddharth'
                 //sh 'cp C:/Users/Admin/.jenkins/workspace/pipeline/target/gamutkart.war C:/Program Files/Apache Software Foundation/Tomcat 10.0/webapps/'
                 
             }
