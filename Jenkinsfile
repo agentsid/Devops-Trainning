@@ -2,12 +2,14 @@ pipeline {
     agent any
 
 	tools {
-		maven 'maven3.6'
+		maven 'maven3.8.7'
+		java 'java17'
 	}
-//
-//	environment {
-//		M2_INSTALL = "/home/gamut/Distros/apache-maven-3.6.0/bin/mvn"
-//	}
+
+	environment {
+		MAVEN_HOME = "D:/destros/Maven/maven-3.8.7/bin"
+		JAVA_HOME = "C:/Program Files/Java/jdk-17/bin"
+	}
 
     stages {
 		stage('Clone-Repo') {
